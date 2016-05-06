@@ -38,7 +38,7 @@ choice
 	  Select the specific U-Boot version you want to use
 
 config BR2_TARGET_UBOOT_LATEST_VERSION
-	bool "2015.10"
+	bool "2016.01"
 
 config BR2_TARGET_UBOOT_CUSTOM_VERSION
 	bool "Custom version"
@@ -90,7 +90,7 @@ endif
 
 config BR2_TARGET_UBOOT_VERSION
 	string
-	default "2015.10"	if BR2_TARGET_UBOOT_LATEST_VERSION
+	default "2016.01"	if BR2_TARGET_UBOOT_LATEST_VERSION
 	default BR2_TARGET_UBOOT_CUSTOM_VERSION_VALUE \
 		if BR2_TARGET_UBOOT_CUSTOM_VERSION
 	default "custom"	if BR2_TARGET_UBOOT_CUSTOM_TARBALL
@@ -385,13 +385,22 @@ endif # BR2_TARGET_UBOOT_ENVIMAGE
 
 config BR2_TARGET_UBOOT_AMLOGIC
     bool "amlogic uboot"
+    select BR2_PACKAGE_HOST_AML_IMAGE_PACKER
     help
         amlogic uboot
 
 config BR2_TARGET_UBOOT_AMLOGIC_2015
     bool "amlogic uboot 2015"
+    select BR2_PACKAGE_HOST_AML_IMG_PACKER_NEW
     help
         amlogic uboot 2015
+
+config BR2_TARGET_UBOOT_PLATFORM 
+    string "platform name"
+    default "gxb"
+
+config BR2_TARGET_UBOOT_ENCRYPTION
+    bool "secure boot"
 
 config BR2_TARGET_UBOOT_ODROID
     bool "odroidc1 uboot"
